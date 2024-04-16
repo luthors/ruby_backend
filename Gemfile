@@ -65,3 +65,14 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+gem "savon"
+gem 'json'
+# gem 'rest-client'
+
+gem "faker", "~> 3.3"
+
+gem "byebug", "~> 11.1"
+
+gem "factory_bot_rails", "~> 6.4"
+gem 'httparty'
+gem "rspec-rails", "~> 6.1"
