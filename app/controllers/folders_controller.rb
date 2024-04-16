@@ -13,8 +13,8 @@ class FoldersController < ApplicationController
 
     def get_folders_by_parent_id
         client = Savon.client(wsdl: "http://localhost:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
-        token= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NTAzMDI5LCJpYXQiOjE3MTMyMDcwMjksImp0aSI6ImZmZmZiNTJjMzNmMjRjM2Q5YWQwOGRkZTYxODJkMmY3IiwidXNlcl9pZCI6ImFkbWluIn0.gExzohZ7LbLENytW_hW3TVq6OU4pIJe8V6Eo-Enafz8'
-        parentFolder = 0
+        token= params[:token]
+        parentFolder = params[:parentFolder]
         response = client.call(:get_folders_by_parent_id,message: {"token" => token, "parentFolder" => parentFolder})
         # response = client.request :web, :get_folders_by_parent_id, body: {token => token}
         print("===================XML=========================== \n")
@@ -26,10 +26,10 @@ class FoldersController < ApplicationController
 
     def update_folder_soap
         client = Savon.client(wsdl: "http://localhost:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
-        token= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NTAzMDI5LCJpYXQiOjE3MTMyMDcwMjksImp0aSI6ImZmZmZiNTJjMzNmMjRjM2Q5YWQwOGRkZTYxODJkMmY3IiwidXNlcl9pZCI6ImFkbWluIn0.gExzohZ7LbLENytW_hW3TVq6OU4pIJe8V6Eo-Enafz8'
-        parentFolder = 0
-        folderId=4
-        folderName="carpetahijaactulizada"
+        token= params[:token]
+        parentFolder = params[:parentFolder]
+        folderId= params[:folderId]
+        folderName= params[:folderName]
         response = client.call(:update_folder_soap,message:
             {
                 "token" => token,
@@ -47,17 +47,15 @@ class FoldersController < ApplicationController
     end
     def share_folder_soap
         client = Savon.client(wsdl: "http://localhost:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
-        token= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NTAzMDI5LCJpYXQiOjE3MTMyMDcwMjksImp0aSI6ImZmZmZiNTJjMzNmMjRjM2Q5YWQwOGRkZTYxODJkMmY3IiwidXNlcl9pZCI6ImFkbWluIn0.gExzohZ7LbLENytW_hW3TVq6OU4pIJe8V6Eo-Enafz8'
-        folderId=4
-        user="user2"
+        token= params[:token]
+        folderId= params[:folderId]
+        user= params[:user]
         response = client.call(:share_folder_soap,message:
             {
                 "token" => token,
                 "folderId" => folderId,
                 "user" => user,
             })
-
-        # response = client.request :web, :get_folders_by_parent_id, body: {token => token}
         print("===================XML=========================== \n")
         puts response
         print("===================JSON=========================== \n")
@@ -66,8 +64,8 @@ class FoldersController < ApplicationController
     end
     def delete_folder_soap
         client = Savon.client(wsdl: "http://localhost:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
-        token= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NTAzMDI5LCJpYXQiOjE3MTMyMDcwMjksImp0aSI6ImZmZmZiNTJjMzNmMjRjM2Q5YWQwOGRkZTYxODJkMmY3IiwidXNlcl9pZCI6ImFkbWluIn0.gExzohZ7LbLENytW_hW3TVq6OU4pIJe8V6Eo-Enafz8'
-        folderId=17
+        token= params[:token]
+        folderId= params[:folderId]
         response = client.call(:delete_folder_soap,message:
             {
                 "token" => token,
