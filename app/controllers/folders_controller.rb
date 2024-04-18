@@ -2,7 +2,8 @@ require 'json'
 
 class FoldersController < ApplicationController
     def list_folder
-        client = Savon.client(wsdl: "http://localhost:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
+
+        client = Savon.client(wsdl: "http://172.171.240.20:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
         response = client.call(:list)
         print("===================XML=========================== \n")
         puts response
@@ -12,7 +13,7 @@ class FoldersController < ApplicationController
     end
 
     def get_folders_by_parent_id
-        client = Savon.client(wsdl: "http://localhost:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
+        client = Savon.client(wsdl: "http://172.171.240.20:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
         token= params[:token]
         parentFolder = params[:parentFolder]
         response = client.call(:get_folders_by_parent_id,message: {"token" => token, "parentFolder" => parentFolder})
@@ -25,7 +26,7 @@ class FoldersController < ApplicationController
     end
 
     def update_folder_soap
-        client = Savon.client(wsdl: "http://localhost:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
+        client = Savon.client(wsdl: "http://172.171.240.20:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
         token= params[:token]
         parentFolder = params[:parentFolder]
         folderId= params[:folderId]
@@ -46,7 +47,7 @@ class FoldersController < ApplicationController
         return render :json => response.to_json
     end
     def share_folder_soap
-        client = Savon.client(wsdl: "http://localhost:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
+        client = Savon.client(wsdl: "http://172.171.240.20:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
         token= params[:token]
         folderId= params[:folderId]
         user= params[:user]
@@ -63,7 +64,7 @@ class FoldersController < ApplicationController
         return render :json => response.to_json
     end
     def delete_folder_soap
-        client = Savon.client(wsdl: "http://localhost:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
+        client = Savon.client(wsdl: "http://172.171.240.20:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
         token= params[:token]
         folderId= params[:folderId]
         response = client.call(:delete_folder_soap,message:
