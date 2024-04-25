@@ -25,4 +25,7 @@ class FilesController < ApplicationController
         return render :json => response.to_json
     end
 
+    def update_file
+        
+
 end

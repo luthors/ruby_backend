@@ -2,7 +2,6 @@ require 'json'
 
 class FoldersController < ApplicationController
     def list_folder
-
         client = Savon.client(wsdl: "http://172.171.240.20:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
         response = client.call(:list)
         print("===================XML=========================== \n")

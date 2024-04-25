@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/folders/delete_folder_soap', to: 'folders#delete_folder_soap'
 
   post '/createfile' => 'files#process_file'
+  put '/updatefile' => 'files#update_file'
+
 
 
 end

@@ -31,16 +31,18 @@ class LoginsController < ApplicationController
         username= params[:username]
         name= params[:name]
         email= params[:email]
-        phone = params[:phone]
+        #phone = params[:phone]
         password= params[:password]
+        age = params[:age]
         puts params
         puts client.operations
-        response = client.call(:resgister_soap, message:
+        response = client.call(:resgister_soap, message: 
             {
                 "username" => username,
                 "name" => name,
                 "email" => email,
-                "phone" => phone,
+                "age"=> age,
+                #"phone" => phone,
                 "password" => password
             })
         print("===================XML=========================== \n")
