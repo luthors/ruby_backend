@@ -17,8 +17,7 @@ Rails.application.routes.draw do
   # delete_file
   delete '/files/deletefile' => 'files#delete_file'
   # download_file
-  get '/files/downloadfile' => 'files#download_file'
-  
+  post '/files/downloadfile' => 'files#download_file'
 
 
 

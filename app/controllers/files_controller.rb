@@ -77,5 +77,21 @@ class FilesController < ApplicationController
         puts (response).to_json
         return render :json => response.to_json
     end
+    # download_file
+
+    def download_file
+        client = Savon.client(wsdl: "http://172.171.240.20:8000/files/soap/?wsdl")  # Consumir un servicio en formato SOAP
+        token= params[:token]
+        fileId= params[:fileId]
+        response = client.call(:download_file,message: {
+            "token" => token,
+            "fileId" => fileId
+        })
+        print("===================XML=========================== \n")
+        puts response
+        print("===================JSON=========================== \n")
+        puts (response).to_json
+        return render :json => response.to_json
+    end
 
 end
