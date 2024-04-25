@@ -79,4 +79,24 @@ class FoldersController < ApplicationController
         puts (response).to_json
         return render :json => response.to_json
     end
+
+
+
+    def register_folder_soap
+        client = Savon.client(wsdl: "http://172.171.240.20:8000/server/soap/?wsdl")  # Consumir un servicio en formato SOAP
+        token= params[:token]
+        parentFolder = params[:parentFolder]
+        folderName= params[:folderName]
+        response = client.call(:register_folder_soap,message:
+            {
+                "token" => token,
+                "folderName" => folderName,
+                "parentFolder" => parentFolder
+            })
+        print("===================XML=========================== \n")
+        puts response
+        print("===================JSON=========================== \n")
+        puts (response).to_json
+        return render :json => response.to_json
+    end
 end
